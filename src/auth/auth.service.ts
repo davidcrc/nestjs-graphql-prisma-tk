@@ -20,15 +20,22 @@ export class AuthService {
     private readonly configService: ConfigService,
   ) {}
 
-  private signToken(
-    payload: any,
-    expiration: number | string,
-    tokenType: 'ACCESS_TOKEN_SECRET' | 'REFRESH_TOKEN_SECRET',
-  ) {
+  private signToken({
+    payload,
+    expiration,
+    expiresIn,
+    tokenType,
+  }: {
+    payload: any;
+    expiration?: number;
+    expiresIn?: string | number;
+    tokenType: 'ACCESS_TOKEN_SECRET' | 'REFRESH_TOKEN_SECRET';
+  }) {
     return this.jwtService.sign(
-      { ...payload, exp: expiration },
+      { ...payload, ...(expiration && { exp: expiration }) },
       {
         secret: this.configService.get<string>(tokenType),
+        expiresIn,
       },
     );
   }
@@ -36,13 +43,17 @@ export class AuthService {
   private async issueTokens(user: User, response: Response) {
     const payload = { username: user.fullname, sub: user.uuid };
 
-    const accessToken = this.signToken(
+    const accessToken = this.signToken({
       payload,
-      '150sec',
-      'ACCESS_TOKEN_SECRET',
-    );
+      expiresIn: '150sec',
+      tokenType: 'ACCESS_TOKEN_SECRET',
+    });
 
-    const refreshToken = this.signToken(payload, '7d', 'REFRESH_TOKEN_SECRET');
+    const refreshToken = this.signToken({
+      payload,
+      expiresIn: '7d',
+      tokenType: 'REFRESH_TOKEN_SECRET',
+    });
 
     response.cookie('access_token', accessToken, { httpOnly: true });
     response.cookie('refresh_token', refreshToken, {
@@ -104,11 +115,11 @@ export class AuthService {
     const expiresIn = 15000; // seconds
     const expiration = Math.floor(Date.now() / 1000) + expiresIn;
 
-    const accessToken = this.signToken(
+    const accessToken = this.signToken({
       payload,
       expiration,
-      'ACCESS_TOKEN_SECRET',
-    );
+      tokenType: 'ACCESS_TOKEN_SECRET',
+    });
 
     res.cookie('access_token', accessToken, { httpOnly: true });
 
@@ -122,7 +133,7 @@ export class AuthService {
     });
 
     if (existingUser) {
-      throw new Error('Email already in use'); // Provide a proper error response
+      throw new BadRequestException({ email: 'Email already in use' });
     }
 
     const hashedPassword = await this.hashPassword(registerDto.password);
@@ -144,7 +155,9 @@ export class AuthService {
     const user = await this.validateUser(loginDto);
 
     if (!user) {
-      throw new Error('Invalid credentials'); // Provide a proper error response
+      throw new BadRequestException({
+        invalidCredentials: 'Invalid credentials',
+      });
     }
 
     return this.issueTokens(user, response); // Issue tokens on login

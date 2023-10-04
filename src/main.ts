@@ -2,11 +2,12 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import * as cookieParser from 'cookie-parser';
 import { BadRequestException, ValidationPipe } from '@nestjs/common';
+import { GraphQLErrorFilter } from './filters/custom-exception.filter';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors({
-    origin: 'http://127.0.0.1:5173',
+    origin: 'http://localhost:3000',
     credentials: true,
     // all headers that client are allowed to use
     allowedHeaders: [
@@ -15,6 +16,7 @@ async function bootstrap() {
       'Content-Type',
       'X-Requested-With',
       'apollo-require-preflight',
+      'x-refresh-token',
     ],
     methods: ['GET', 'PUT', 'POST', 'DELETE', 'OPTIONS'],
   });
@@ -38,6 +40,7 @@ async function bootstrap() {
       },
     }),
   );
+  app.useGlobalFilters(new GraphQLErrorFilter());
   await app.listen(5000);
 }
 bootstrap();
