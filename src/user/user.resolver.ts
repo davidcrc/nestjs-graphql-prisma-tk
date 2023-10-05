@@ -8,6 +8,7 @@ import { BadRequestException, UseFilters } from '@nestjs/common';
 import { LoginDto } from '../auth/dto/login.dto';
 import { LoginResponse } from './dto/login-type.dto';
 import { GraphQLErrorFilter } from '../filters/custom-exception.filter';
+import { User } from './user.entity';
 
 @Resolver('User')
 export class UserResolver {
@@ -60,5 +61,10 @@ export class UserResolver {
     } catch (error) {
       throw new BadRequestException(error.message);
     }
+  }
+
+  @Query(() => [User])
+  getUsers() {
+    return this.userService.getUsers();
   }
 }
