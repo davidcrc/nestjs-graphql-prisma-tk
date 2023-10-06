@@ -83,3 +83,42 @@ nest g resolver user
 ```bash
 yarn add apollo-server-express
 ```
+
+# GrphQl upload
+
+```bash
+yarn add graphql-upload@^14.0.0 graphql-upload-ts@^2.0.6
+
+```
+
+```bash
+yarn add multer
+```
+
+- generate Post
+
+```bash
+nest g module post
+```
+
+```bash
+nest g service post
+```
+
+```bash
+nest g resolver post
+```
+
+- generate Like
+
+```bash
+nest g module like
+```
+
+```bash
+nest g service like
+```
+
+```bash
+nest g resolver like
+```

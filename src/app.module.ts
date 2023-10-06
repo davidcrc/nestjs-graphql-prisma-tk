@@ -6,6 +6,9 @@ import { ConfigModule } from '@nestjs/config';
 import { join } from 'path';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
+import { PostService } from './post/post.service';
+import { PostModule } from './post/post.module';
+import { LikeModule } from './like/like.module';
 
 @Module({
   imports: [
@@ -20,7 +23,10 @@ import { UserModule } from './user/user.module';
     PrismaModule,
     AuthModule,
     UserModule,
+    PostModule,
+    LikeModule,
   ],
   controllers: [],
+  providers: [PostService],
 })
 export class AppModule {}

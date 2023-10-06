@@ -1378,6 +1378,13 @@
     "@types/connect" "*"
     "@types/node" "*"
 
+"@types/busboy@^0.3.2":
+  version "0.3.3"
+  resolved "https://registry.yarnpkg.com/@types/busboy/-/busboy-0.3.3.tgz#1f4ac56449aadc2a5f7a97f3583cd1b1125ef59e"
+  integrity sha512-XR3IliUO7eDVksVh6VjXRclPXKF6PKMLn1mNAPh4h8+a3BGu2fYPU5bubC1uWVjwbNKCjHBB8+lK6PnaRcOMsg==
+  dependencies:
+    "@types/node" "*"
+
 "@types/connect@*":
   version "3.4.36"
   resolved "https://registry.yarnpkg.com/@types/connect/-/connect-3.4.36.tgz#e511558c15a39cb29bd5357eebb57bd1459cd1ab"
@@ -1545,6 +1552,11 @@
   version "10.17.60"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.17.60.tgz#35f3d6213daed95da7f0f73e75bcc6980e90597b"
   integrity sha512-F0KIgDJfy2nA3zMLmWGKxcH2ZVEtCZXHHdOQs2gSaQ27+lNeEfGxzkIw90aXswATX7AZ33tahPbzy6KAfUreVw==
+
+"@types/object-path@^0.11.1":
+  version "0.11.2"
+  resolved "https://registry.yarnpkg.com/@types/object-path/-/object-path-0.11.2.tgz#3fd3ca0c553d02fb59d786367e4ccd7fd7340385"
+  integrity sha512-STkyj0IQkgbmohF1afXQN64KucE3w7EgSbNJxqkJoq0KHVBV4nU5Pyku+TM9UCiCLXhZlkEFd8zq38P8lDFi6g==
 
 "@types/parse-json@^4.0.0":
   version "4.0.0"
@@ -2325,12 +2337,19 @@ bundle-name@^3.0.0:
   dependencies:
     run-applescript "^5.0.0"
 
-busboy@^1.0.0:
+busboy@1.6.0, busboy@^1.0.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/busboy/-/busboy-1.6.0.tgz#966ea36a9502e43cdb9146962523b92f531f6893"
   integrity sha512-8SFQbg/0hQ9xy3UNTB0YEnsNBbWfhf7RtnzpL7TkBiTBRfrQ9Fxcnz7VJsleJpyp6rVLvXiuORqjlHi5q+PYuA==
   dependencies:
     streamsearch "^1.1.0"
+
+busboy@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/busboy/-/busboy-0.3.1.tgz#170899274c5bf38aae27d5c62b71268cd585fd1b"
+  integrity sha512-y7tTxhGKXcyBxRKAni+awqx8uqaJKrSFSNFSeRG5CsWNdmy2BIK+6VGWEW7TZnIO/533mtMEA4rOevQV815YJw==
+  dependencies:
+    dicer "0.3.0"
 
 bytes@3.1.2:
   version "3.1.2"
@@ -2780,6 +2799,13 @@ dezalgo@^1.0.4:
   dependencies:
     asap "^2.0.0"
     wrappy "1"
+
+dicer@0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/dicer/-/dicer-0.3.0.tgz#eacd98b3bfbf92e8ab5c2fdb71aaac44bb06b872"
+  integrity sha512-MdceRRWqltEG2dZqO769g27N/3PXfcKl04VhYnBlo2YhH7zPi88VebsjTKclaOyiuMaGU72hTfw3VkUitGcVCA==
+  dependencies:
+    streamsearch "0.1.2"
 
 diff-sequences@^29.6.3:
   version "29.6.3"
@@ -3307,6 +3333,11 @@ fresh@0.5.2:
   resolved "https://registry.yarnpkg.com/fresh/-/fresh-0.5.2.tgz#3d8cadd90d976569fa835ab1f8e4b23a105605a7"
   integrity sha512-zJ2mQYM18rEFOudeV4GShTGIQ7RbzA7ozbU9I/XBpm7kqgMywgmylMwXHxZJmkVoYkna9d2pVXVXPdYTP9ej8Q==
 
+fs-capacitor@^6.2.0:
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/fs-capacitor/-/fs-capacitor-6.2.0.tgz#fa79ac6576629163cb84561995602d8999afb7f5"
+  integrity sha512-nKcE1UduoSKX27NSZlg879LdQc94OtbOsEmKMN2MBNudXREvijRKx2GEBsTMTfws+BrbkJoEuynbGSVRSpauvw==
+
 fs-extra@^10.0.0:
   version "10.1.0"
   resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-10.1.0.tgz#02873cfbc4084dde127eaa5f9905eef2325d1abf"
@@ -3477,6 +3508,26 @@ graphql-tag@2.12.6, graphql-tag@^2.11.0:
   dependencies:
     tslib "^2.1.0"
 
+graphql-upload-ts@^2.0.6:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/graphql-upload-ts/-/graphql-upload-ts-2.1.0.tgz#06ee87bb8bec594314dc54c87b6779f71e96282a"
+  integrity sha512-6e6n2FTSZNXGRrwE+4Y1DCeIloGH1pm88OB6KgmfcT9Y+6zM5a+TSUYGop4Vg85cx25QIPkNpP3g1NKiRbF6Xw==
+  dependencies:
+    busboy "1.6.0"
+
+graphql-upload@^14.0.0:
+  version "14.0.0"
+  resolved "https://registry.yarnpkg.com/graphql-upload/-/graphql-upload-14.0.0.tgz#6d2fc8feb74d1eb8b0d33499bfa85e00fdd1520b"
+  integrity sha512-l3utaN0p/VLUFFrUAijwEfmsSxEolVri5uuD91yhbOkxRD6q5l0rsy1F4Naq4TKWFSKsGciCjyrc1ZhCT2Ew7A==
+  dependencies:
+    "@types/busboy" "^0.3.2"
+    "@types/node" "*"
+    "@types/object-path" "^0.11.1"
+    busboy "^0.3.1"
+    fs-capacitor "^6.2.0"
+    http-errors "^2.0.0"
+    object-path "^0.11.8"
+
 graphql-ws@5.14.0:
   version "5.14.0"
   resolved "https://registry.yarnpkg.com/graphql-ws/-/graphql-ws-5.14.0.tgz#766f249f3974fc2c48fae0d1fb20c2c4c79cd591"
@@ -3534,7 +3585,7 @@ html-escaper@^2.0.0:
   resolved "https://registry.yarnpkg.com/html-escaper/-/html-escaper-2.0.2.tgz#dfd60027da36a36dfcbe236262c00a5822681453"
   integrity sha512-H2iMtd0I4Mt5eYiapRdIDjp+XzelXQ0tFE4JS7YFwFevXXMmOp9myNrUvCg0D6ws8iqkRPBfKHgbwig1SmlLfg==
 
-http-errors@2.0.0:
+http-errors@2.0.0, http-errors@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/http-errors/-/http-errors-2.0.0.tgz#b7774a1486ef73cf7667ac9ae0858c012c57b9d3"
   integrity sha512-FtwrG/euBzaEjYeRqOgly7G0qviiXoJWnvEH2Z1plBdXgbyjv34pHTSb9zoeHMyDy33+DWy5Wt9Wo+TURtOYSQ==
@@ -4634,6 +4685,19 @@ multer@1.4.4-lts.1:
     type-is "^1.6.4"
     xtend "^4.0.0"
 
+multer@^1.4.5-lts.1:
+  version "1.4.5-lts.1"
+  resolved "https://registry.yarnpkg.com/multer/-/multer-1.4.5-lts.1.tgz#803e24ad1984f58edffbc79f56e305aec5cfd1ac"
+  integrity sha512-ywPWvcDMeH+z9gQq5qYHCCy+ethsk4goepZ45GLD63fOu0YcNecQxi64nDs3qluZB+murG3/D4dJ7+dGctcCQQ==
+  dependencies:
+    append-field "^1.0.0"
+    busboy "^1.0.0"
+    concat-stream "^1.5.2"
+    mkdirp "^0.5.4"
+    object-assign "^4.1.1"
+    type-is "^1.6.4"
+    xtend "^4.0.0"
+
 mute-stream@0.0.8:
   version "0.0.8"
   resolved "https://registry.yarnpkg.com/mute-stream/-/mute-stream-0.0.8.tgz#1630c42b2251ff81e2a283de96a5497ea92e5e0d"
@@ -4733,6 +4797,11 @@ object-inspect@^1.9.0:
   version "1.12.3"
   resolved "https://registry.yarnpkg.com/object-inspect/-/object-inspect-1.12.3.tgz#ba62dffd67ee256c8c086dfae69e016cd1f198b9"
   integrity sha512-geUvdk7c+eizMNUDkRpW1wJwgfOiOeHbxBR/hLXK1aT6zmVSO0jsQcs7fj6MGw89jC/cjGfLcNOrtMYtGqm81g==
+
+object-path@^0.11.8:
+  version "0.11.8"
+  resolved "https://registry.yarnpkg.com/object-path/-/object-path-0.11.8.tgz#ed002c02bbdd0070b78a27455e8ae01fc14d4742"
+  integrity sha512-YJjNZrlXJFM42wTBn6zgOJVar9KFJvzx6sTWDte8sWZF//cnjl0BxHNpfZx+ZffXX63A9q0b1zsFiBX4g4X5KA==
 
 on-finished@2.4.1:
   version "2.4.1"
@@ -5392,6 +5461,11 @@ statuses@2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/statuses/-/statuses-2.0.1.tgz#55cb000ccf1d48728bd23c685a063998cf1a1b63"
   integrity sha512-RwNA9Z/7PrK06rYLIzFMlaF+l73iwpzsqRIFgbMLbTcLD6cOao82TaWefPXQvB2fOC4AjuYSEndS7N/mTCbkdQ==
+
+streamsearch@0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/streamsearch/-/streamsearch-0.1.2.tgz#808b9d0e56fc273d809ba57338e929919a1a9f1a"
+  integrity sha512-jos8u++JKm0ARcSUTAZXOVC0mSox7Bhn6sBgty73P1f3JGf7yG2clTbBNHUdde/kdvP2FESam+vM6l8jBrNxHA==
 
 streamsearch@^1.1.0:
   version "1.1.0"

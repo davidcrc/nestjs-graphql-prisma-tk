@@ -35,7 +35,7 @@ export class AuthService {
       { ...payload, ...(expiration && { exp: expiration }) },
       {
         secret: this.configService.get<string>(tokenType),
-        expiresIn,
+        ...(expiresIn && { expiresIn }),
       },
     );
   }
@@ -45,7 +45,7 @@ export class AuthService {
 
     const accessToken = this.signToken({
       payload,
-      expiresIn: '150sec',
+      expiresIn: '550sec', // TODO: this should be 150sec
       tokenType: 'ACCESS_TOKEN_SECRET',
     });
 
@@ -105,7 +105,7 @@ export class AuthService {
     }
 
     const userExists = await this.prisma.user.findUnique({
-      where: { id: payload.sub },
+      where: { uuid: payload.sub },
     });
 
     if (!userExists) {

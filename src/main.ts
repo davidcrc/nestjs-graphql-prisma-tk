@@ -3,6 +3,7 @@ import { AppModule } from './app.module';
 import * as cookieParser from 'cookie-parser';
 import { BadRequestException, ValidationPipe } from '@nestjs/common';
 import { GraphQLErrorFilter } from './filters/custom-exception.filter';
+import * as graphqlUploadExpress from 'graphql-upload/graphqlUploadExpress.js';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -20,6 +21,8 @@ async function bootstrap() {
     ],
     methods: ['GET', 'PUT', 'POST', 'DELETE', 'OPTIONS'],
   });
+
+  app.use(graphqlUploadExpress({ maxFileSize: 10000000000, maxFiles: 10 }));
 
   app.use(cookieParser());
 
