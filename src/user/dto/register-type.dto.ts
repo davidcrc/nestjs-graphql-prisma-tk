@@ -1,6 +1,6 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 import { ErrorType } from './error.type';
-import { User } from '../user.entity';
+import { User } from '@/user/user.entity';
 
 @ObjectType()
 export class RegisterResponse {

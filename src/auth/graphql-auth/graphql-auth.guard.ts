@@ -7,7 +7,7 @@ import {
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 import { Request, Response } from 'express';
-import { AuthService } from '../auth.service';
+import { AuthService } from '@/auth/auth.service';
 
 @Injectable()
 export class GraphqlAuthGuard implements CanActivate {

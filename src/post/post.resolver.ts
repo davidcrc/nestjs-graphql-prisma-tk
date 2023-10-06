@@ -5,7 +5,7 @@ import * as GraphQLUpload from 'graphql-upload/GraphQLUpload.js';
 import { Request } from 'express';
 import { PostDetails } from './dto/post-details-type.dto';
 import { UseGuards } from '@nestjs/common';
-import { GraphqlAuthGuard } from '../auth/graphql-auth/graphql-auth.guard';
+import { GraphqlAuthGuard } from '@/auth/graphql-auth/graphql-auth.guard';
 
 @Resolver()
 export class PostResolver {
