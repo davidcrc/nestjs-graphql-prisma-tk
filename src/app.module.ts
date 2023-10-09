@@ -17,6 +17,7 @@ import { CommentModule } from './comment/comment.module';
     ServeStaticModule.forRoot({
       rootPath: join(process.cwd(), 'public'), // This points to the 'public' folder where your static files are located
       serveRoot: '/', // This means files will be available under 'http://localhost:5000/files/'
+      exclude: ['/graphql'],
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
