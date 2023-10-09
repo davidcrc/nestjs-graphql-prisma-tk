@@ -2,6 +2,17 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Comment {
+  createdAt: DateTime!
+  id: Int!
+  post: PostType!
+  postId: Int!
+  text: String!
+  updatedAt: DateTime!
+  user: User!
+  userId: Int!
+}
+
 """
 A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
@@ -14,6 +25,7 @@ type ErrorType {
 
 type LikeType {
   id: Int!
+  postId: Int!
   userId: Int!
 }
 
@@ -28,12 +40,16 @@ type LoginResponse {
 }
 
 type Mutation {
+  createComment(postId: Float!, text: String!): Comment!
   createPost(text: String!, video: Upload!): PostType!
+  deleteComment(id: Float!): Comment!
   deletePost(id: Float!): PostType!
+  likePost(postId: Float!): LikeType!
   login(loginInput: LoginDto!): LoginResponse!
   logout: String!
   refreshToken: String!
   register(registerInput: RegisterDto!): RegisterResponse!
+  unlikePost(postId: Float!): LikeType!
 }
 
 type PostDetails {
@@ -56,6 +72,7 @@ type PostType {
 }
 
 type Query {
+  getCommentsByPostId(postId: Float!): [Comment!]!
   getPostById(id: Float!): PostDetails!
   getPosts(skip: Int! = 0, take: Int! = 1): [PostType!]!
   getPostsByUserId(userUUID: String!): [PostType!]!
@@ -87,4 +104,5 @@ type User {
   image: String
   password: String!
   updatedAt: DateTime!
+  uuid: String!
 }

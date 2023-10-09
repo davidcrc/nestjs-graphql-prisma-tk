@@ -6,6 +6,9 @@ export class User {
   id?: number;
 
   @Field()
+  uuid?: string;
+
+  @Field()
   fullname: string;
 
   @Field()

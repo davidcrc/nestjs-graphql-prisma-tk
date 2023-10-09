@@ -122,3 +122,32 @@ nest g service like
 ```bash
 nest g resolver like
 ```
+
+# Static file server
+
+```bash
+yarn add @nestjs/serve-static
+```
+
+-- add to app.moodule.ts
+
+```ts
+ServeStaticModule.forRoot({
+  rootPath: join(process.cwd(), 'public'), // This points to the 'public' folder where your static files are located
+  serveRoot: '/', // This means files will be available under 'http://localhost:5000/files/'
+}),
+```
+
+# Comment modules
+
+```bash
+nest g module comment
+```
+
+```bash
+nest g service comment
+```
+
+```bash
+nest g resolver comment
+```

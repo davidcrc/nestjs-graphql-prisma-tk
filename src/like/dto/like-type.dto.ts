@@ -7,4 +7,7 @@ export class LikeType {
 
   @Field(() => Int)
   userId: number;
+
+  @Field(() => Int)
+  postId: number;
 }
