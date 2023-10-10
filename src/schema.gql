@@ -50,6 +50,7 @@ type Mutation {
   refreshToken: String!
   register(registerInput: RegisterDto!): RegisterResponse!
   unlikePost(postId: Float!): LikeType!
+  updateUserProfile(bio: String, fullname: String, image: Upload): User!
 }
 
 type PostDetails {
