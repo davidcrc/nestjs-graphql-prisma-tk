@@ -5,7 +5,7 @@
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
 [circleci-url]: https://circleci.com/gh/nestjs/nest
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
+  <p align="center">Nestjs API for Tk <a href="https://github.com/davidcrc/nextjs-graphql-zustand-tk" >FRONT</a>  </p>
     <p align="center">
 <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
 <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
@@ -24,7 +24,7 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+[FRONT](https://github.com/davidcrc/nextjs-graphql-zustand-tk) API for TK
 
 ## Installation
 
@@ -58,16 +58,237 @@ $ yarn run test:e2e
 $ yarn run test:cov
 ```
 
-## Support
+## TODO:
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+- Restrict on some endpoints some fields , like user
 
-## Stay in touch
+## EndPoints
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+```graphql
+mutation RegisterUser(
+  $fullname: String!
+  $email: String!
+  $password: String!
+  $confirmPassword: String!
+) {
+  register(
+    registerInput: {
+      fullname: $fullname
+      email: $email
+      password: $password
+      confirmPassword: $confirmPassword
+    }
+  ) {
+    user {
+      id
+      uuid
+      fullname
+      email
+    }
+  }
+}
 
-## License
+{
+  "fullname": "name",
+  "email": "jc4@example.co",
+  "password": "12345678",
+  "confirmPassword": "12345678"
+}
+```
 
-Nest is [MIT licensed](LICENSE).
+```graphql
+mutation LoginUser($email: String!, $password: String!) {
+  login(loginInput: { email: $email, password: $password }) {
+    user {
+      id
+      email
+      uuid
+      fullname
+      bio
+      image
+    }
+  }
+}
+
+{
+  "email": "jc4@example.co",
+  "password": "12345678"
+}
+```
+
+```graphql
+mutation LogoutUser {
+  logout
+}
+```
+
+```graphql
+query GetUsers {
+  getUsers {
+    id
+    fullname
+    email
+    image
+  }
+}
+```
+
+```graphql
+query GetUsers {
+  getUsers {
+    id
+    fullname
+    email
+    image
+    bio
+  }
+}
+```
+
+```graphql
+mutation CreatePost($text: String!, $video: Upload!) {
+  createPost(text: $text, video: $video) {
+    id
+    text
+    video
+  }
+}
+```
+
+```graphql
+query GetPosts($skip: Int!, $take: Int!) {
+  getPosts(skip: $skip, take: $take) {
+    id
+    text
+    video
+    user {
+      id
+      uuid
+      fullname
+      email
+    }
+    likes {
+      id
+      userId
+      postId
+    }
+  }
+}
+```
+
+```graphql
+query GetCommentsByPostId($postId: Float!) {
+  getCommentsByPostId(postId: $postId) {
+    id
+    text
+    createdAt
+    user {
+      id
+      fullname
+      email
+    }
+    post {
+      id
+      text
+      video
+    }
+  }
+}
+```
+
+```graphql
+mutation DeleteComment($id: Float!) {
+  deleteComment(id: $id) {
+    id
+    __typename
+  }
+}
+```
+
+```graphql
+mutation LikePost($postId: Float!) {
+  likePost(postId: $postId) {
+    id
+    userId
+    postId
+  }
+}
+```
+
+```graphql
+query GetPostById($id: Float!) {
+  getPostById(id: $id) {
+    id
+    text
+    video
+    createdAt
+    user {
+      id
+      email
+      fullname
+    }
+    likes {
+      id
+      userId
+      postId
+    }
+    otherPostIds
+  }
+}
+```
+
+```graphql
+mutation CreateComment($text: String!, $postId: Float!) {
+  createComment(text: $text, postId: $postId) {
+    text
+    id
+    createdAt
+    user {
+      id
+      fullname
+      email
+    }
+    post {
+      id
+      text
+      video
+    }
+  }
+}
+```
+
+```graphql
+mutation UnlikePost($postId: Float!) {
+  unlikePost(postId: $postId) {
+    id
+    userId
+    postId
+  }
+}
+```
+
+```graphql
+query getPostsByUserId($userUUID: String!) {
+  getPostsByUserId(userUUID: $userUUID) {
+    id
+    text
+    video
+    user {
+      fullname
+      email
+      id
+    }
+  }
+}
+```
+
+```graphql
+mutation UpdateUserProfile($fullname: String!, $bio: String!, $image: Upload) {
+  updateUserProfile(fullname: $fullname, bio: $bio, image: $image) {
+    id
+    fullname
+    bio
+    image
+  }
+}
+```
